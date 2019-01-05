@@ -31,8 +31,9 @@ namespace Station_Meteo
         private SocketClient sk_client;
         private string m_address;
         private int m_port;
-        private ThreadClientSocket th;
+        private ThreadClientSocket th_client;
         private List<TextBlock> list_textblock_data = new List<TextBlock>();
+        private ThreadServerSocket th_server;
 
         public MainWindow()
         {
@@ -62,7 +63,7 @@ namespace Station_Meteo
                     sk_client = new SocketClient(client);
                     m_address = serv.getAddress();
                     m_port = serv.getPort();
-                    th = new ThreadClientSocket(this, client);
+                    th_client = new ThreadClientSocket(this, client);
                 }
                 else
                     set_button_connexion_red();

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
         xmlns:MetroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
         xmlns:local="clr-namespace:Station_Meteo"
         mc:Ignorable="d"
@@ -166,6 +167,22 @@
                             <TextBlock Text="Temperature Intérieure " HorizontalAlignment="Right" FontFamily="Verdana" FontSize="10" Margin="0, 10"/>
                             <TextBlock Style="{StaticResource TextBox_data}" Text="None" Name="TextBlock_temp_interieur"/>
                         </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Rectangle Height="150" Margin="20" Fill="White" RadiusY="10" RadiusX="10" Stroke="#FF6A6A6A">
+                            <Rectangle.Effect>
+                                <DropShadowEffect Color="#FF9C9C9C" BlurRadius="20"/>
+                            </Rectangle.Effect>
+                            
+                        </Rectangle>
+                        <Grid Margin="20">
+                            <Grid Width="30" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0"  OpacityMask="#FF574343" Background="#FF2F8BD8">
+                                <Grid.Effect>
+                                    <DropShadowEffect BlurRadius="20" Color="#FFC9C9C9" RenderingBias="Quality"/>
+                                </Grid.Effect>
+                                <materialDesign:PackIcon Kind="SignDirection"  Foreground="White" Margin="10" HorizontalAlignment="Center"/>
+                            </Grid>
+                         </Grid>
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Rectangle Height="150" Margin="20" Fill="White" RadiusY="10" RadiusX="10" Stroke="#FF6A6A6A">

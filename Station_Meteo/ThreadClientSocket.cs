@@ -18,7 +18,7 @@ namespace Station_Meteo
         private MainWindow main;
         private Thread m_thread;
         private string[] rx_data;
-        private string[] unite = { "", "", " inches", " °C", " °C", " °C" };
+        private string[] unite = { "", "", " inches", " °C", " %", " °C", " %" };
 
         public ThreadClientSocket(MainWindow mw, TcpClient cl)
         {
