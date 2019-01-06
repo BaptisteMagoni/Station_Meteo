@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-        xmlns:MetroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
+        xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
         xmlns:local="clr-namespace:Station_Meteo"
         mc:Ignorable="d"
         Title="Station météo" Height="653.318" Width="942.283" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
@@ -81,13 +81,13 @@
                 </Button>
                 <Button Style="{StaticResource Button_menu}" Margin="10" Background="#FF26BD49" Height="40" Click="Button_Click_Serveur">
                     <Grid Width="150">
-                        <materialDesign:PackIcon Kind="Server" FontSize="60" VerticalAlignment="Center"/>
-                        <TextBlock HorizontalAlignment="Center" Text="Serveur" FontSize="20" VerticalAlignment="Center"/>
+                        <materialDesign:PackIcon Kind="Percent" FontSize="60" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="Pourcentage" FontSize="20" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid Name="Grid_Mesure" Grid.Column="1" Grid.Row="1" Visibility="Visible">
+        <Grid Name="Grid_Mesure" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
             <ScrollViewer>
                 <Grid Name="Panel" Background="White">
                     <Grid.RowDefinitions>
@@ -182,7 +182,7 @@
                                 </Grid.Effect>
                                 <materialDesign:PackIcon Kind="SignDirection"  Foreground="White" Margin="10" HorizontalAlignment="Center"/>
                             </Grid>
-                         </Grid>
+                        </Grid>
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Rectangle Height="150" Margin="20" Fill="White" RadiusY="10" RadiusX="10" Stroke="#FF6A6A6A">
@@ -222,22 +222,38 @@
                 </Grid>
             </ScrollViewer>
         </Grid>
-        <Grid Name="Grid_Serveur" Grid.Column="1" Grid.Row="1" Background="White" Visibility="Hidden">
+        <Grid Name="Grid_Serveur" Grid.Column="1" Grid.Row="1" Background="White" Visibility="Visible">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+            <Grid Grid.Column="0" HorizontalAlignment="Center">
+                <chart:RadialGaugeChart Background="{x:Null}" Name="direction" ChartTitle="Direction du vent" ChartSubTitle="" Foreground="Purple">
+                    <chart:RadialGaugeChart.Series>
+                        <chart:ChartSeries 
+                            DisplayMember="Titulo"
+                            ItemsSource="{Binding Path=WindDirection}"
+                            SeriesTitle="WindDirection"
+                            ValueMember="Percentage"
+                            />
+                    </chart:RadialGaugeChart.Series>
+                </chart:RadialGaugeChart>
+            </Grid>
+            <Grid Grid.Column="1" HorizontalAlignment="Center">
+                <chart:RadialGaugeChart Background="{x:Null}" Name="humidity" ChartTitle="Humiditer intérieur" ChartSubTitle="" Foreground="Purple">
+                    <chart:RadialGaugeChart.Series>
+                        <chart:ChartSeries 
+                            DisplayMember="Titulo"
+                            ItemsSource="{Binding Path=InsideHumidity}"
+                            SeriesTitle="InsideHumidity"
+                            ValueMember="Percentage"
+                            />
+                    </chart:RadialGaugeChart.Series>
+                </chart:RadialGaugeChart>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

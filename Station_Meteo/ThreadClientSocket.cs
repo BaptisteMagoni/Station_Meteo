@@ -57,7 +57,19 @@ namespace Station_Meteo
                             try
                             {
                                 for (int i = 0; i < main.getTextBlockData().Count; i++)
-                                    main.getTextBlockData()[i].Text = rx_data.GetValue(i).ToString() + unite[i];
+                                {
+                                    try
+                                    {
+                                        ((TextBlock)main.getTextBlockData()[i]).Text = rx_data.GetValue(i).ToString() + unite[i];
+                                    }
+                                    catch
+                                    {
+                                        main.getTextBlockData()[i] = Int32.Parse(rx_data.GetValue(i).ToString());
+                                        main.direction.DataContext = new WindDirectionViewModel(main.getInstanceDirection());
+                                    }
+                                    
+                                }
+                                    
                             }
                             catch
                             {
@@ -84,15 +96,22 @@ namespace Station_Meteo
 
         public void init_object_mainwin()
         {
-            main.Dispatcher.Invoke(() =>
+            try
             {
-                main.Button_connexion.BorderBrush = Brushes.Red;
-                main.Label_ip_serveur.Content = "IP du serveur : ?";
-                main.Label_port_serveur.Content = "Port du serveur : ?";
-                foreach (TextBlock tb in main.getTextBlockData())
-                    tb.Text = "None";
-                main.displayMessageBox("Le serveur semble ne plus répondre. Réessayer de vous reconnecter !"); 
-            });
+                main.Dispatcher.Invoke(() =>
+                {
+                    main.Button_connexion.BorderBrush = Brushes.Red;
+                    main.Label_ip_serveur.Content = "IP du serveur : ?";
+                    main.Label_port_serveur.Content = "Port du serveur : ?";
+                    foreach (TextBlock tb in main.getTextBlockData())
+                        tb.Text = "None";
+                    main.displayMessageBox("Le serveur semble ne plus répondre. Réessayer de vous reconnecter !");
+                });
+            }
+            catch
+            {
+                Console.WriteLine("[Warning] Init Object MainWindow");
+            }
         }
     }
 }
