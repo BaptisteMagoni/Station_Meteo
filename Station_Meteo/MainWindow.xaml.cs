@@ -33,31 +33,25 @@ namespace Station_Meteo
         private int m_port;
         private ThreadClientSocket th_client;
         private List<Object> list_data_change = new List<Object>();
-        private ThreadServerSocket th_server;
-        private WindDirection winddirection;
-        private InsideHumidity inside;
+        private List<ProgressBarCircle> progress_list = new List<ProgressBarCircle>();
 
         public MainWindow()
         {
             InitializeComponent();
 
+            progress_list.Add(new ProgressBarCircle(humidity));
+            progress_list.Add(new ProgressBarCircle(direction));
             list_grid.Add(Grid_Mesure);
             list_grid.Add(Grid_Serveur);
             list_data_change.Add(TextBlock_type);
             list_data_change.Add(TextBlock_bartrend);
             list_data_change.Add(TextBlock_barometric);
             list_data_change.Add(TextBlock_temp_interieur);
-            list_data_change.Add(TextBlock_humidite_interieur);
+            list_data_change.Add(TextBlock_wind_speed);
             list_data_change.Add(TextBlock_temp_exterieur);
-
-            winddirection = new WindDirection();
-            direction.DataContext = new WindDirectionViewModel(winddirection);
-
-            inside = new InsideHumidity();
-            humidity.DataContext = new InsideHumidityViewModel(inside);
-
-            list_data_change.Add(new WindDirection());
-            list_data_change.Add(new InsideHumidity());
+            for (int i = 0; i < progress_list.Count(); i++)
+                list_data_change.Add(progress_list[i]);
+            
         }
 
         private void Button_Click_connexion(object sender, RoutedEventArgs e)
@@ -129,64 +123,6 @@ namespace Station_Meteo
         public void displayMessageBox(string message)
         {
             MessageBox.Show(message);
-        }
-
-        public WindDirection getInstanceDirection()
-        {
-            return winddirection;
-        }
-
-        public InsideHumidity getInstanceHumidity()
-        {
-            return inside;
-        }
-    }
-
-    public class InsideHumidityViewModel
-    {
-        public List<InsideHumidity> InsideHumidity { get; set; }
-
-        public InsideHumidityViewModel(InsideHumidity degres)
-        {
-            InsideHumidity = new List<InsideHumidity>();
-            InsideHumidity.Add(degres);
-        }
-    }
-
-    public class InsideHumidity
-    {
-        public string Titulo { get; set; }
-
-        public int Percentage { get; set; }
-
-        public InsideHumidity()
-        {
-            Titulo = "";
-            Percentage = 0;
-        }
-    }
-
-    public class WindDirectionViewModel
-    {
-        public List<WindDirection> WindDirection { get; set; }
-
-        public WindDirectionViewModel(WindDirection degres)
-        {
-            WindDirection = new List<WindDirection>();
-            WindDirection.Add(degres);
-        }
-    }
-
-    public class WindDirection
-    {
-        public string Titulo { get; set; }
-
-        public int Percentage { get; set; }
-
-        public WindDirection()
-        {
-            Titulo = "";
-            Percentage = 0;
         }
     }
 }

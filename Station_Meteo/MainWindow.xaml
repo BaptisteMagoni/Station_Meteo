@@ -13,7 +13,7 @@
         <Style x:Key="TextBox_data" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontSize" Value="28"/>
             <Setter Property="Foreground" Value="Gray"/>
         </Style>
         <Style x:Key="Button_menu" TargetType="Button">
@@ -87,7 +87,7 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid Name="Grid_Mesure" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
+        <Grid Name="Grid_Mesure" Grid.Column="1" Grid.Row="1" Visibility="Visible">
             <ScrollViewer>
                 <Grid Name="Panel" Background="White">
                     <Grid.RowDefinitions>
@@ -168,22 +168,6 @@
                             <TextBlock Style="{StaticResource TextBox_data}" Text="None" Name="TextBlock_temp_interieur"/>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="2">
-                        <Rectangle Height="150" Margin="20" Fill="White" RadiusY="10" RadiusX="10" Stroke="#FF6A6A6A">
-                            <Rectangle.Effect>
-                                <DropShadowEffect Color="#FF9C9C9C" BlurRadius="20"/>
-                            </Rectangle.Effect>
-                            
-                        </Rectangle>
-                        <Grid Margin="20">
-                            <Grid Width="30" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0"  OpacityMask="#FF574343" Background="#FF2F8BD8">
-                                <Grid.Effect>
-                                    <DropShadowEffect BlurRadius="20" Color="#FFC9C9C9" RenderingBias="Quality"/>
-                                </Grid.Effect>
-                                <materialDesign:PackIcon Kind="SignDirection"  Foreground="White" Margin="10" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </Grid>
-                    </Grid>
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Rectangle Height="150" Margin="20" Fill="White" RadiusY="10" RadiusX="10" Stroke="#FF6A6A6A">
                             <Rectangle.Effect>
@@ -212,17 +196,17 @@
                                 <Grid.Effect>
                                     <DropShadowEffect BlurRadius="20" Color="#FFC9C9C9" RenderingBias="Quality"/>
                                 </Grid.Effect>
-                                <materialDesign:PackIcon Kind="Percent" Foreground="White" Margin="10" HorizontalAlignment="Center"/>
+                                <materialDesign:PackIcon Kind="SignDirection" Foreground="White" Margin="10" HorizontalAlignment="Center"/>
                             </Grid>
-                            <TextBlock Text="Humidité Intérieur " HorizontalAlignment="Right" FontFamily="Verdana" FontSize="10" Margin="0, 10"/>
-                            <TextBlock Style="{StaticResource TextBox_data}" Text="None" Name="TextBlock_humidite_interieur"/>
+                            <TextBlock Text="Vitesse du vent " HorizontalAlignment="Right" FontFamily="Verdana" FontSize="10" Margin="0, 10"/>
+                            <TextBlock Style="{StaticResource TextBox_data}" Text="None" Name="TextBlock_wind_speed"/>
                         </Grid>
                     </Grid>
                     <DockPanel Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="100" LastChildFill="False" Margin="142,88,0,-5" Grid.Row="2" VerticalAlignment="Top" Width="100"/>
                 </Grid>
             </ScrollViewer>
         </Grid>
-        <Grid Name="Grid_Serveur" Grid.Column="1" Grid.Row="1" Background="White" Visibility="Visible">
+        <Grid Name="Grid_Serveur" Grid.Column="1" Grid.Row="1" Background="White" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -234,9 +218,9 @@
                 <chart:RadialGaugeChart Background="{x:Null}" Name="direction" ChartTitle="Direction du vent" ChartSubTitle="" Foreground="Purple">
                     <chart:RadialGaugeChart.Series>
                         <chart:ChartSeries 
-                            DisplayMember="Titulo"
-                            ItemsSource="{Binding Path=WindDirection}"
-                            SeriesTitle="WindDirection"
+                            DisplayMember="Title"
+                            ItemsSource="{Binding Path=Progress}"
+                            SeriesTitle="Progress"
                             ValueMember="Percentage"
                             />
                     </chart:RadialGaugeChart.Series>
@@ -246,9 +230,9 @@
                 <chart:RadialGaugeChart Background="{x:Null}" Name="humidity" ChartTitle="Humiditer intérieur" ChartSubTitle="" Foreground="Purple">
                     <chart:RadialGaugeChart.Series>
                         <chart:ChartSeries 
-                            DisplayMember="Titulo"
-                            ItemsSource="{Binding Path=InsideHumidity}"
-                            SeriesTitle="InsideHumidity"
+                            DisplayMember="Title"
+                            ItemsSource="{Binding Path=Progress}"
+                            SeriesTitle="Progress"
                             ValueMember="Percentage"
                             />
                     </chart:RadialGaugeChart.Series>

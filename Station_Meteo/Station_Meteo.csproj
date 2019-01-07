@@ -79,9 +79,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ProgressBarCircle.cs" />
     <Compile Include="SocketClient.cs" />
     <Compile Include="ThreadClientSocket.cs" />
-    <Compile Include="ThreadServerSocket.cs" />
     <Page Include="FenServ.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -7,6 +7,7 @@ using System.Threading;
 using System.Net.Sockets;
 using System.Windows.Media;
 using System.Windows.Controls;
+using De.TorstenMandelkow.MetroChart;
 
 namespace Station_Meteo
 {
@@ -18,7 +19,7 @@ namespace Station_Meteo
         private MainWindow main;
         private Thread m_thread;
         private string[] rx_data;
-        private string[] unite = { "", "", " inches", " °C", " %", " °C", " %" };
+        private string[] unite = { "", "", " inches", " °C", " km/h", " °C", " " };
 
         public ThreadClientSocket(MainWindow mw, TcpClient cl)
         {
@@ -58,16 +59,12 @@ namespace Station_Meteo
                             {
                                 for (int i = 0; i < main.getTextBlockData().Count; i++)
                                 {
-                                    try
-                                    {
+                                    var type = main.getTextBlockData()[i].GetType();
+
+                                    if (type.Equals(typeof(TextBlock)))
                                         ((TextBlock)main.getTextBlockData()[i]).Text = rx_data.GetValue(i).ToString() + unite[i];
-                                    }
-                                    catch
-                                    {
-                                        main.getTextBlockData()[i] = Int32.Parse(rx_data.GetValue(i).ToString());
-                                        main.direction.DataContext = new WindDirectionViewModel(main.getInstanceDirection());
-                                    }
-                                    
+                                    else if(type.Equals(typeof(ProgressBarCircle)))
+                                        ((ProgressBarCircle)main.getTextBlockData()[i]).MAJ_Progress(Int32.Parse(rx_data.GetValue(i).ToString()));
                                 }
                                     
                             }
