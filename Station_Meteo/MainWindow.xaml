@@ -93,7 +93,7 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid Name="Grid_Mesure" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
+        <Grid Name="Grid_Mesure" Grid.Column="1" Grid.Row="1" Visibility="Visible">
             <ScrollViewer>
                 <Grid Name="Panel" Background="White">
                     <Grid.RowDefinitions>
@@ -272,7 +272,7 @@
                                 <Grid.Effect>
                                     <DropShadowEffect BlurRadius="20" Color="#FFC9C9C9" RenderingBias="Quality"/>
                                 </Grid.Effect>
-                                <materialDesign:PackIcon Kind="SolarPower"  Foreground="White" Margin="10" HorizontalAlignment="Center"/>
+                                <materialDesign:PackIcon Kind="SolarPower"  Foreground="Black" Margin="10" HorizontalAlignment="Center"/>
                             </Grid>
                             <TextBlock Text="Radiation Solaire " HorizontalAlignment="Right" FontFamily="Verdana" FontSize="10" Margin="0, 10"/>
                             <TextBlock Style="{StaticResource TextBox_data}" Text="None" Name="TextBlock_solar_radiation"/>
@@ -315,7 +315,7 @@
                 </chart:RadialGaugeChart>
             </Grid>
         </Grid>
-        <Grid Name="Grid_Afficheur" Grid.Column="1" Grid.Row="1" Background="White" Visibility="Visible">
+        <Grid Name="Grid_Afficheur" Grid.Column="1" Grid.Row="1" Background="White" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
