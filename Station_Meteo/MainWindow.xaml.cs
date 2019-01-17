@@ -51,6 +51,10 @@ namespace Station_Meteo
             list_data_change.Add(TextBlock_temp_exterieur);
             for (int i = 0; i < progress_list.Count(); i++)
                 list_data_change.Add(progress_list[i]);
+            list_data_change.Add(TextBlock_dew_point);
+            list_data_change.Add(TextBlock_Wind_Chill);
+            list_data_change.Add(TextBlock_heat_index);
+            list_data_change.Add(TextBlock_solar_radiation);
             
         }
 
@@ -123,6 +127,11 @@ namespace Station_Meteo
         public void displayMessageBox(string message)
         {
             MessageBox.Show(message);
+        }
+
+        private void Button_Click_Afficheur(object sender, RoutedEventArgs e)
+        {
+            visibility(Grid_Afficheur);
         }
     }
 }

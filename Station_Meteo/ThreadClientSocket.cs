@@ -19,7 +19,7 @@ namespace Station_Meteo
         private MainWindow main;
         private Thread m_thread;
         private string[] rx_data;
-        private string[] unite = { "", "", " inches", " °C", " km/h", " °C", " " };
+        private string[] unite = { "", "", " inches", " °C", " km/h", " °C", " °C", " °C", " °C", "w/m²" };
 
         public ThreadClientSocket(MainWindow mw, TcpClient cl)
         {
@@ -100,8 +100,15 @@ namespace Station_Meteo
                     main.Button_connexion.BorderBrush = Brushes.Red;
                     main.Label_ip_serveur.Content = "IP du serveur : ?";
                     main.Label_port_serveur.Content = "Port du serveur : ?";
-                    foreach (TextBlock tb in main.getTextBlockData())
-                        tb.Text = "None";
+                    try
+                    {
+                        foreach (Object tb in main.getTextBlockData())
+                            ((TextBlock)tb).Text = "None";
+                    }
+                    catch
+                    {
+
+                    }
                     main.displayMessageBox("Le serveur semble ne plus répondre. Réessayer de vous reconnecter !");
                 });
             }
