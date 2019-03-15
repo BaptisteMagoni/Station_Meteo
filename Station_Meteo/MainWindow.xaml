@@ -93,7 +93,7 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid Name="Grid_Mesure" Grid.Column="1" Grid.Row="1" Visibility="Visible">
+        <Grid Name="Grid_Mesure" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
             <ScrollViewer>
                 <Grid Name="Panel" Background="White">
                     <Grid.RowDefinitions>
